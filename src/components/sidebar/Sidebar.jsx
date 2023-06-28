@@ -33,7 +33,7 @@ const Sidebar = () => {
           <Link to="/">
             <li>
               <DashboardIcon className="icon" />
-              <span>Dashboard</span>
+              <span>Admin Dashboard</span>
             </li>
           </Link>
 
@@ -51,12 +51,12 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link to="/jobs">
+          {/* <Link to="/jobs">
             <li>
               <CreditCardIcon className="icon" />
               <span>Field Jobs</span>
             </li>
-          </Link>
+          </Link> */}
 
           <p className="title">USEFUL</p>
           <li>
