@@ -1,7 +1,10 @@
 import "./login.scss";
 import logo from "../../images/valtec-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full h-[100vh] flex justify-center items-center font-mono bg-slate-300">
       <div className="bg-white/40 backdrop-blur-xl md:w-[30%] w-[90%] p-3 md:p-0  md:h-[50%] shadow-xl rounded-md flex flex-col justify-center items-center">
@@ -10,14 +13,19 @@ const Login = () => {
           <input
             type="text"
             placeholder="username"
-            className="p-4 text-[20px]"
+            className="md:p-6 p-4 text-[20px] border-solid border-[2px] border-gray-500 focus:outline-0"
           />
           <input
             type="text"
             placeholder="password"
-            className="p-4 text-[20px]"
+            className="md:p-6 p-4 text-[20px] border-solid border-[2px] border-gray-500 focus:outline-0"
           />
-          <button className="bg-green-600 p-4 rounded-full text-white text-[25px]">submit</button>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="bg-green-600 p-4 rounded-full text-white text-[25px]"
+          >
+            submit
+          </button>
         </div>
       </div>
     </div>

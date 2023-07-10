@@ -120,7 +120,7 @@ export const productInputs = [
   },
   {
     id: 7,
-    label: "Admin's Request",
+    label: "Admin's Request /role",
     type: "request",
   },
 ];

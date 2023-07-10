@@ -20,12 +20,13 @@ function App() {
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard">
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="users">
+
+            <Route path="/dashboard/users">
               <Route index element={<List type={"user"} />} />
-              <Route path=":userId" element={<Single type={"user"}/>} />
+              <Route path=":userId" element={<Single type={"user"} />} />
               <Route
                 path="new"
                 element={
@@ -34,9 +35,9 @@ function App() {
               />
             </Route>
 
-            <Route path="products">
+            <Route path="/dashboard/products">
               <Route index element={<List type={"job"} />} />
-              <Route path=":productId" element={<Single type={"job"}/>} />
+              <Route path=":productId" element={<Single type={"job"} />} />
               <Route
                 path="new"
                 element={
@@ -48,10 +49,11 @@ function App() {
                 }
               />
             </Route>
-            <Route path="jobs">
+
+            {/* <Route path="jobs">
               <Route index element={<FieldJobs />} />
               <Route path=":jobID" element={<SingleJob />} />
-            </Route>
+            </Route> */}
           </Route>
         </Routes>
       </BrowserRouter>

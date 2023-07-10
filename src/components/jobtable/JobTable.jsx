@@ -164,7 +164,7 @@ const JobTable = () => {
         return (
           <div className="cellAction">
             <Link
-              to={`/products/${params.row.id}`}
+              to={`/dashboard/products/${params.row.id}`}
               style={{ textDecoration: "none" }}
             >
               <div className="viewButton">View</div>
@@ -180,12 +180,13 @@ const JobTable = () => {
       },
     },
   ];
+  // fit namerole description of work age sex <picture>admin agent role -role -dis</picture>
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Add New Job
-        <Link to="/products/new" className="link">
+        <Link to="/dashboard/products/new" className="link">
           Add New
         </Link>
       </div>
