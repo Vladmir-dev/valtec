@@ -13,11 +13,22 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import logo from "../../images/valtec-logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { get_jobs, get_users } from "../../features/jobs/jobActions";
+import { logout } from "../../features/auth/AuthSlice";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  // const { dispatch } = useContext(DarkModeContext);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+
+  useEffect(() => {
+    dispatch(get_jobs(token));
+    dispatch(get_users(token));
+  }, [token, dispatch]);
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -78,7 +89,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={() => dispatch(logout())}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>

@@ -4,8 +4,11 @@ import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 const JobTable = () => {
+  const jobs = useSelector((state) => state.job.jobs);
+  // console.log("jobs", jobs)
   const userColumns = [
     { field: "id", headerName: "Job ID", width: 70 },
     {
@@ -22,7 +25,7 @@ const JobTable = () => {
       //   },
     },
     {
-      field: "agent",
+      field: "field_agent",
       headerName: "Field Agent",
       width: 230,
     },
@@ -32,18 +35,18 @@ const JobTable = () => {
       headerName: "Supervisor",
       width: 100,
     },
+    // {
+    //   field: "client",
+    //   headerName: "Client",
+    //   width: 160,
+    // },
     {
-      field: "client",
-      headerName: "Client",
-      width: 160,
-    },
-    {
-      field: "datec",
+      field: "date_created",
       headerName: "Date Created",
       width: 100,
     },
     {
-      field: "dates",
+      field: "date_started",
       headerName: "Date Started",
       width: 100,
     },
@@ -193,7 +196,7 @@ const JobTable = () => {
       <div style={{ height: 800, width: "90vw" }}>
         <DataGrid
           className="datagrid"
-          rows={data}
+          rows={jobs}
           columns={userColumns.concat(actionColumn)}
           pageSize={9}
           rowsPerPageOptions={[9]}

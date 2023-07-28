@@ -1,17 +1,9 @@
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "user",
-    headerName: "User",
+    field: "username",
+    headerName: "Username",
     width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
-        </div>
-      );
-    },
   },
   {
     field: "email",
@@ -20,24 +12,23 @@ export const userColumns = [
   },
 
   {
-    field: "age",
-    headerName: "Age",
+    field: "first_name",
+    headerName: "First Name",
     width: 100,
   },
   {
-    field: "status",
-    headerName: "Status",
-    width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
-        </div>
-      );
-    },
+    field: "last_name",
+    headerName: "Last Name",
+    width: 100,
+  },
+  {
+    field: "phone_number",
+    headerName: "Phone",
+    width: 100,
   },
 ];
 
+export const BASE_URL = "http://localhost:8000/api/v1"
 //temporary data
 export const userRows = [
   {

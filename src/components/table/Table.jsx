@@ -6,8 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useSelector } from "react-redux";
 
 const List = () => {
+  const jobs = useSelector((state) => state.job.jobs)
+  
   const rows = [
     {
       id: 1143155,
@@ -101,7 +104,7 @@ const List = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {jobs.map((row) => (
             <TableRow key={row.id}>
               <TableCell className="tableCell">{row.id}</TableCell>
               <TableCell className="tableCell">
@@ -110,17 +113,17 @@ const List = () => {
                   {row.product}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
+              <TableCell className="tableCell">{row.name}</TableCell>
               <TableCell className="tableCell">{row.supervisor}</TableCell>
-              <TableCell className="tableCell">{row.client}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
+              <TableCell className="tableCell">{row.field_agent}</TableCell>
+              <TableCell className="tableCell">{row.date_created}</TableCell>
               <TableCell className="tableCell">{row.date_started}</TableCell>
               <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
+              <TableCell className="tableCell">{row.location}</TableCell>
               <TableCell className="tableCell">{row.distance}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
+              <TableCell className="tableCell">{row.land}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -4,6 +4,8 @@ import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Single = ({ type }) => {
   const rows = [
@@ -79,11 +81,28 @@ const Single = ({ type }) => {
     },
   ];
 
-  const jobid = useParams();
-  console.log("job id", jobid.productId);
-  const jobDetail = rows.filter((x) => x.id == jobid.productId);
-  console.log("jobs", jobDetail[0]);
+  let item;
 
+  if (type === "user") {
+    const users = useSelector((state) => state.job.users);
+    const userId = useParams();
+    console.log("user id", userId.userId);
+    const user = users.filter((x) => x.id == userId.userId);
+    item = user[0];
+    console.log("user ", user);
+  } else {
+    const jobs = useSelector((state) => state.job.jobs);
+
+    const jobid = useParams();
+
+    console.log("job id", jobid.productId);
+
+    const jobDetail = jobs.filter((x) => x.id == jobid.productId);
+    item = jobDetail[0];
+    console.log("jobs", jobDetail[0]);
+  }
+
+  console.log("item", item);
   return (
     <div className="single">
       <Sidebar />
@@ -91,7 +110,14 @@ const Single = ({ type }) => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            {type !== "user" ? (
+              <div></div>
+            ) : (
+              <Link to={`/dashboard/users/update/${item.id}`}>
+                <div className="editButton">Edit</div>
+              </Link>
+            )}
+
             <h1 className="title">Information</h1>
             {type === "user" ? (
               <div className="item">
@@ -101,53 +127,73 @@ const Single = ({ type }) => {
                   className="itemImg"
                 />
                 <div className="details">
-                  <h1 className="itemTitle">Jane Doe</h1>
+                  <h1 className="itemTitle">{item.username}</h1>
+                  <div className="detailItem">
+                    <span className="itemKey">First Name:</span>
+                    <span className="itemValue">{item.first_name}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Last Name:</span>
+                    <span className="itemValue">{item.last_name}</span>
+                  </div>
                   <div className="detailItem">
                     <span className="itemKey">Email:</span>
-                    <span className="itemValue">janedoe@gmail.com</span>
+                    <span className="itemValue">{item.email}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Phone:</span>
-                    <span className="itemValue">+1 2345 67 89</span>
+                    <span className="itemValue">+{item.phone_number}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Sex:</span>
+                    <span className="itemValue">{item.sex}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Office Location:</span>
+                    <span className="itemValue">{item.office_location}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Permissions:</span>
+                    <span className="itemValue">{item.user_type}</span>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="item text-[30px]">
-                <img src={jobDetail[0].img} alt="" className="itemImg" />
+                {/* <img src={jobDetail[0].img} alt="" className="itemImg" /> */}
                 <div className="details ">
-                  <h1 className="itemTitle">{jobDetail[0].name}</h1>
+                  <h1 className="itemTitle">{item.name}</h1>
                   <div className="detailItem">
                     <span className="itemKey">Client:</span>
-                    <span className="itemValue">{jobDetail[0].client}</span>
+                    <span className="itemValue">{item.client}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Land:</span>
-                    <span className="itemValue">{jobDetail[0].land}</span>
+                    <span className="itemValue">{item.land_name}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Location:</span>
-                    <span className="itemValue">{jobDetail[0].location}</span>
+                    <span className="itemValue">{item.location}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Agent:</span>
-                    <span className="itemValue">{jobDetail[0].agent}</span>
+                    <span className="itemValue">{item.field_agent}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Supervisor:</span>
-                    <span className="itemValue">{jobDetail[0].supervisor}</span>
+                    <span className="itemValue">{item.supervisor}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Date Created:</span>
-                    <span className="itemValue">{jobDetail[0].datec}</span>
+                    <span className="itemValue">{item.date_created}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Date Started:</span>
-                    <span className="itemValue">{jobDetail[0].dates}</span>
+                    <span className="itemValue">{item.dates_started}</span>
                   </div>
                   <div className="detailItem">
                     <span className="itemKey">Status:</span>
-                    <span className="itemValue">{jobDetail[0].status}</span>
+                    <span className="itemValue">{item.status}</span>
                   </div>
                 </div>
               </div>

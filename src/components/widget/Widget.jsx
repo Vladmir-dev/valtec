@@ -18,6 +18,7 @@ const Widget = ({ type }) => {
       data = {
         title: "USERS",
         isMoney: false,
+        amount:100,
         link: "See all users",
         icon: (
           <PersonOutlinedIcon
@@ -34,6 +35,7 @@ const Widget = ({ type }) => {
       data = {
         title: "JOBS",
         isMoney: false,
+        amount:50,
         link: "View all jobs",
         icon: (
           <ShoppingCartOutlinedIcon
@@ -46,10 +48,11 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "earning":
+    case "accepted":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
+        title: "ACCEPTED JOBS",
+        isMoney: false,
+        amount:10,
         link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -61,8 +64,9 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "BALANCE",
-        isMoney: true,
+        title: "COMPLETED JOBS",
+        isMoney: false,
+        amount:100,
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon
@@ -84,7 +88,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.amount}
         </span>
         <Link to={data.title.toLowerCase()} className="link">{data.link}</Link>
       </div>
